@@ -9,6 +9,24 @@
 
 
 @section('content')
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                <h5><i class="icons fas fa-ban"></i> Ocorreu um erro ao Salvar os dados:</h5>
+
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(session('warning'))
+        <div class="alert alert-success">
+            {{session('warning')}}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-body">
             <form action="{{route('settings.save')}}" method="POST">
@@ -17,31 +35,31 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Titulo do Site</label>
                     <div class="col-sm-10">
-                        <input type="text" name="title" value="" class="form-control">
+                        <input type="text" name="title" value="{{$settings['title']}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">SubTitulo</label>
                     <div class="col-sm-10">
-                        <input type="text" name="subtitle" value="" class="form-control">
+                        <input type="text" name="subtitle" value="{{$settings['subtitle']}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">E-mail para Contato</label>
                     <div class="col-sm-10">
-                        <input type="text" name="email" value="" class="form-control">
+                        <input type="text" name="email" value="{{$settings['email']}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Cor do Fundo</label>
                     <div class="col-sm-10">
-                        <input type="color" name="bgcolor" value="" class="form-control">
+                        <input type="color" name="bgcolor" value="{{$settings['bgcolor']}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Cor da letra</label>
                     <div class="col-sm-10">
-                        <input type="color" name="textcolor" value="" class="form-control">
+                        <input type="color" name="textcolor" value="{{$settings['textcolor']}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
