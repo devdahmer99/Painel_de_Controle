@@ -237,15 +237,16 @@ return [
             'url'         => 'painel',
             'icon'        => 'far fa-fw fa-file',
         ],
-        [
+        array(
             'text'        => 'Minhas Páginas',
             'url'         => 'painel/pages',
             'icon'        => 'far fa-fw fa-file',
-        ],
+        ),
         [
             'text'        => 'Meus Usuários',
             'url'         => 'painel/users',
             'icon'        => 'far fa-fw fa-file',
+            'can'         => 'edit-users'
         ],
         ['header' => 'account_settings'],
         [
