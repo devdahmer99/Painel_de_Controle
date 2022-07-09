@@ -9,7 +9,7 @@
 @section('content')
 @if($errors->any())
     <div class="alert alert-danger">
-        <h4>Ocorreu um Erro.</h4>
+        <h5><i class="icon fas fa-ban"></i>Ocorreu um Erro.</h5>
         <ul>
         @foreach($errors->all() as $error)
             <li>{{$error}}</li>
@@ -18,49 +18,43 @@
     </div>
 @endif
 
-
-    <form method="POST" action="{{route('users.store')}}" class="form-horizontal">
-        @csrf
-        <div class="form-group">
-            <div class="row">
-            <label class="col-sm-2 control-label">Nome Completo</label>
-            <div class="col-sm-10">
-                <input type="text" name="name" value="{{old('name')}}" class="form-control">
-            </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <label class="col-sm-2 control-label">E-mail</label>
+<div class="card">
+    <div class="card-body">
+        <form method="POST" action="{{route('users.store')}}" class="form-horizontal">
+            @csrf
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nome Completo</label>
                 <div class="col-sm-10">
-                    <input type="email" name="email" value="{{old('email')}}" class="form-control">
+                    <input type="text" name="name" value="{{old('name')}}" class="form-control @error('name') is-invalid @enderror">
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <label class="col-sm-2 control-label">Senha</label>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">E-mail</label>
                 <div class="col-sm-10">
-                    <input type="password" name="password" class="form-control">
+                    <input type="email" name="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror">
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <label class="col-sm-2 control-label">Confirme a senha</label>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Senha</label>
                 <div class="col-sm-10">
-                    <input type="password" name="password_confirmation" class="form-control">
+                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror">
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <label class="col-sm-2 control-label"></label>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Confirme a senha</label>
+                <div class="col-sm-10">
+                    <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
                     <input type="submit" value="Cadastrar" class="btn btn-success">
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+</div>
+
 
 @endsection
