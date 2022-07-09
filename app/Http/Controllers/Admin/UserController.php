@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 
@@ -23,7 +24,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::paginate(1);
-        return view('admin.users.index', ['users' => $users]);
+        $loggedId = intval(Auth::id());
+        return view('admin.users.index', ['users' => $users, 'loggedId' => $loggedId]);
     }
 
     /**
@@ -172,6 +174,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $loggedId = intval(Auth::id());
+        if($loggedId !== intval($id)) {
+            $user = User::find($id);
+            $user->delete();
+        }
+
+        return redirect()->route('users.index');
     }
 }
