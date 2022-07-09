@@ -3,6 +3,8 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +36,12 @@ Route::prefix('painel')->group(function() {
     Route::post('logout', [LoginController::class, 'logout']);
 
     Route::resource('users', UserController::class);
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+
+    Route::put('profilesave', [ProfileController::class, 'save'])->name('profile.save');
+
+    Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
 });
 
 Auth::routes();
