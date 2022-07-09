@@ -42,6 +42,8 @@ Route::prefix('painel')->group(function() {
     Route::put('profilesave', [ProfileController::class, 'save'])->name('profile.save');
 
     Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
+
+    Route::put('settingssave',[SettingsController::class, 'save'])->name('settings.save');
 });
 
 Auth::routes();
