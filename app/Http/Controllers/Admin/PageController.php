@@ -11,6 +11,7 @@ use App\Models\Page;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PageController extends Controller
@@ -157,6 +158,8 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+            $page = Page::find($id);
+            $page->delete();
+        return redirect()->route('pages.index');
     }
 }
