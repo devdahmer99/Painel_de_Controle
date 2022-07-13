@@ -7,10 +7,11 @@ O Famigerado Painel de Controle ou Dashboard.
 
 #Funcionalidades do Software: (Preview)
 
-- Cadastro de Usuários.
 - Login.
+- Cadastro de Usuários.
 - Edição e Exclusão de Usuários.
-
+- Configurações de Usuário.
+- Configurações gerais e página
 - Controle de Permissão para Usuário Administrador.
 
 ## Autor
