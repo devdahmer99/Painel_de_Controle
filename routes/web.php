@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\RegisterController;
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
@@ -36,6 +37,7 @@ Route::prefix('painel')->group(function() {
     Route::post('logout', [LoginController::class, 'logout']);
 
     Route::resource('users', UserController::class);
+    Route::resource('pages', PageController::class);
 
     Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
 
