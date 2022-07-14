@@ -18,7 +18,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Conteúdo</th>
                     <th>Ações</th>
                 </tr>
                 </thead>
@@ -27,7 +26,6 @@
                     <tr>
                         <td>{{$page->id}}</td>
                         <td>{{$page->title}}</td>
-                        <td>{{$page->body}}</td>
                         <td>
                             <a href="" target="_blank" class="btn btn-sm btn-warning">Ver</a>
                             <a href="{{route('pages.edit', ['page' => $page->id])}}" class="btn btn-sm btn-primary">Editar</a>
