@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * @method static find(int $loggedId)
  * @method static where(string $string, mixed $email)
+ * @method static count()
  */
 class User extends Authenticatable
 {
