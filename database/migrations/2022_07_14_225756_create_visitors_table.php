@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
-            $table->ipAddress('visitor');
-            $table->dateTime('data_access');
+            $table->string('ip');
+            $table->dateTime('date_access');
             $table->string('page', 100);
             $table->timestamps();
         });

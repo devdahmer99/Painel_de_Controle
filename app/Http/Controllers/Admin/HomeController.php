@@ -7,6 +7,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use App\Models\Visitor;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -18,28 +19,39 @@ class HomeController extends Controller
     /**
      * @return Factory|View|Application
      */
-    public function index(): Factory|View|Application
+    public function index(Request $request): Factory|View|Application
     {
         $visitsCount = 0;
         $onlineCount = 0;
         $pageCount = 0;
         $userCount = 0;
+        $interval = intval($request->input('interval', 30));
+        if($interval > 120) {
+            $interval = 120;
+        }
 
-        $visitsCount = Visitor::count();
+        //Count de Visitantes
+        $dateInterval = date('Y-m-d H:i:s', strtotime('-'.$interval.' days'));
+        $visitsCount = Visitor::where('date_access', '>=', $dateInterval)->count();
 
+        //Count de Usuários Logados
         $dateLimit = date('Y-m-d H:i:s', strtotime('-5 minutes'));
-        $onlineList = Visitor::select('visitor')->where('visitors.data_access', '>=', $dateLimit)->groupBy('visitor')->get();
+        $onlineList = Visitor::select('ip')->where('date_access', '>=', $dateLimit)->groupBy('ip')->get();
         $onlineCount = count($onlineList);
 
+        //Count de Usuários
         $pageCount = Page::count();
 
         $userCount = User::count();
 
-        $pagePie = [
-            'Teste 1' => 100,
-            'Teste 2' => 200,
-            'Teste 3' => 300
-        ];
+        //Count do Gráfico
+        $pagePie = [];
+        $visitsAll = Visitor::selectRaw('page, count(page) as c')
+            ->where('date_access', '>=', $dateInterval)
+            ->groupBy('page')->get();
+        foreach($visitsAll as $visit) {
+            $pagePie[$visit->page] = intval($visit['c']);
+        }
 
         $pageLabels = json_encode(array_keys($pagePie));
         $pageValues = json_encode(array_values($pagePie));
@@ -50,7 +62,8 @@ class HomeController extends Controller
             'pageCount' => $pageCount,
             'userCount' => $userCount,
             'pageLabels' => $pageLabels,
-            'pageValues' => $pageValues
+            'pageValues' => $pageValues,
+            'dateInterval' => $interval
         ]);
     }
 }
