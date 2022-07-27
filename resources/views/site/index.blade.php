@@ -1,2 +1,3 @@
-<?php
-echo "Bem vindo a página Inicial do site";
+@extends('site.layout')
+
+@section('title', 'TITULO DE TESTE')
