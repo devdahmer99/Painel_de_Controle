@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Site\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,13 +47,10 @@ Route::prefix('painel')->group(function() {
     Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
 
     Route::put('settingssave',[SettingsController::class, 'save'])->name('settings.save');
-
-    Route::fallback([PageController::class, 'index']);
 });
 
+Route::fallback([PagesController::class, 'index']);
+
 Auth::routes();
 
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
