@@ -28,6 +28,7 @@
 </head>
 
 <body>
+
 <!-- header-start -->
 <header>
     <div class="header-area ">
@@ -81,7 +82,7 @@
     </div>
 </header>
 <!-- header-end -->
-
+    @yield('content')
 <!-- footer start -->
 <footer class="footer">
     <div class="footer_top">
@@ -91,7 +92,7 @@
                     <div class="footer_widget">
                         <div class="footer_logo">
                             <a href="#">
-                                <img src="img/logo.png" alt="">
+                                <img src="{{asset('assets/img/logo.png')}}" alt="">
                             </a>
                         </div>
                         <p>
