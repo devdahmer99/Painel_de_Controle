@@ -22,10 +22,10 @@ class SettingsController extends Controller
         $dbsettings = Setting::get();
 
         foreach($dbsettings as $dbsetting) {
-            $settings[$dbsetting['name']] = $dbsetting['content'];
+            $settings [ $dbsetting['name'] ] = $dbsetting['content'];
         }
 
-        return view('admin.settings.index', ['settings' => $settings]);
+        return view('admin.settings.index', compact('settings'));
     }
 
     public function save(Request $request)

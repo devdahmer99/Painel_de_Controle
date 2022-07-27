@@ -46,7 +46,13 @@ Route::prefix('painel')->group(function() {
     Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
 
     Route::put('settingssave',[SettingsController::class, 'save'])->name('settings.save');
+
+    Route::fallback([PageController::class, 'index']);
 });
 
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
